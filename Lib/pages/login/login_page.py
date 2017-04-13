@@ -1,5 +1,5 @@
 """Login page object."""
-from basepage import BasePage
+from Lib.pages import BasePage
 
 
 class LoginPage(BasePage):
