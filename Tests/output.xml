@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20170413 13:57:01.755" generator="Robot 3.0.2 (Python 2.7.6 on linux2)">
+<suite source="/home/olena/src/address-book/robot/Tests/login.robot" id="s1" name="Login">
+<test id="s1-t1" name="Login to AddressBook">
+<kw name="Open Login Page" library="LoginSteps">
+<msg timestamp="20170413 13:57:01.799" level="FAIL">AttributeError: 'LoginSteps' object has no attribute 'pages'</msg>
+<status status="FAIL" endtime="20170413 13:57:01.799" starttime="20170413 13:57:01.798"></status>
+</kw>
+<tags>
+<tag>robot</tag>
+</tags>
+<status status="FAIL" endtime="20170413 13:57:01.799" critical="yes" starttime="20170413 13:57:01.795">AttributeError: 'LoginSteps' object has no attribute 'pages'</status>
+</test>
+<doc>Login Feature</doc>
+<status status="FAIL" endtime="20170413 13:57:01.800" starttime="20170413 13:57:01.758"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+<stat fail="1" pass="0">robot</stat>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="Login" pass="0">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
