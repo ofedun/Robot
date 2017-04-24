@@ -10,6 +10,9 @@ ${BROWSER}    Chrome
 ${URL}    http://localhost/addressbook/
 ${username}    admin
 ${password}    secret
+#${ALIAS}    None
+#${DESIRED_CAPABILITIES}    platform:UBUNTU
+#${REMOTE_URL}
 
 
 *** Test Cases ***
@@ -24,16 +27,15 @@ Login to AddressBook
 Open browser to Login page
     [Arguments]    ${URL}    ${BROWSER}
     Open Login page    ${URL}  ${BROWSER}
+
 Attempt to login with valid credentials
-    [Arguments]    ${username}    ${password}
     Enter Username    ${username}
     Enter Password    ${password}
     Click Login Button
 
-#Attempt to login with valid credentials
-#    [Arguments]    ${username}    ${password}
-#    Attempt to login with credentials    ${username}    ${password}
-
 I am logged in on main page
     Logged in on main page
 
+#Attempt to login with valid credentials
+#    [Arguments]    ${username}    ${password}
+#    Attempt to login with credentials    ${username}    ${password}

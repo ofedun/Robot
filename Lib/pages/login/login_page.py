@@ -1,6 +1,7 @@
 """Login page object."""
 from Lib.pages import BasePage
 from Lib.elements import LoginForm
+from selenium import webdriver
 
 
 class LoginPage(BasePage):
@@ -9,8 +10,9 @@ class LoginPage(BasePage):
     Provides API for Login page.
     """
     def __init__(self):
-        BasePage.__init__(self)
-        self.login_form_elements = LoginForm(driver=self.driver)
+        super(BasePage, self).__init__()
+        self.driver = webdriver.Chrome('/usr/bin/chromedriver')
+        self.login_form_elements = LoginForm(self.driver)
 
 
     def login(self, username, password):

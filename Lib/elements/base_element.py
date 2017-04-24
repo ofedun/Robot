@@ -1,3 +1,4 @@
+
 class BaseElement(object):
     """Class for handling elements on pages."""
     def __init__(self, driver):

@@ -1,11 +1,10 @@
 """Steps for Login functionality."""
 from Lib.pages import LoginPage
-from Lib.elements import LoginForm
+
 
 class LoginSteps(object):
 
     def __init__(self):
-        # self.login_form_obj = LoginForm()
         self.login_page = LoginPage()
 
 

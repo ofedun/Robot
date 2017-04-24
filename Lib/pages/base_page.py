@@ -9,18 +9,21 @@ class BasePage(object):
 
     Provides shared functionality for Page objects.
     """
-    def __init__(self, browser='Chrome'):
+    def __init__(self, url, browser='Chrome'):
         # self.driver = webdriver.Chrome()
         self.driver = webdriver
+        self.url = url
+
+        def attach(session_id, session_url):
+            driver = webdriver.Remote(command_executor=session_url, desired_capabilities={'browserName': 'chrome'})
+            driver.session_id = session_id
+
         session_url = self.driver.command_executor._url
         session_id = self.driver.session_id
-        driver = webdriver.Remote(command_executor=session_url, desired_capabilities={'browserName': 'chrome'})
-        driver.session_id = session_id
-
-        if session_id:
-            driver.session_id()
-        else:
+        if session_id is None:
             self.driver = webdriver.Chrome()
+        else:
+            attach(session_id, session_url)
 
 
 
@@ -55,5 +58,5 @@ class BasePage(object):
         """Go to pages URL."""
         target_url = url
         self.driver.get(target_url)
-        # import time
-        # time.sleep(10)
+        import time
+        time.sleep(10)
