@@ -6,7 +6,8 @@ ELEMENTMAP = {
     'username': 'user',
     'password': 'pass',
     'login_button': '//input[@type="submit"]',
-    'loggedin_user': ''
+    'logout_link': 'Logout',
+    'logged_username': 'admin'
 }
 
 class LoginForm(BaseElement):
@@ -44,9 +45,11 @@ class LoginForm(BaseElement):
             ELEMENTMAP['login_button'])
         login_button.click()
 
-    def check_logged_in(self, expected):
-        username = self.driver.find_by_text(
-            ELEMENTMAP['loggedin_user'])
+    def check_is_current_user(self, expected):
+        self.driver.find_element_by_link_text(
+                ELEMENTMAP['logout_link'])
+        username = self.driver.find_element_by_xpath(
+            ELEMENTMAP['logged_username'])
         if username == expected:
             return username
 

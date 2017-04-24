@@ -34,7 +34,7 @@ Attempt to login with valid credentials
     Click Login Button
 
 I am logged in on main page
-    Logged in on main page
+    Logged in on main page    ${username}
 
 #Attempt to login with valid credentials
 #    [Arguments]    ${username}    ${password}

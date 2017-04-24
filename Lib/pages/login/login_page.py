@@ -30,5 +30,5 @@ class LoginPage(BasePage):
     def click_submit_button(self):
         self.login_form_elements.click_submit_button()
 
-    def logged_in_on_main_page(self, expected):
-        self.login_form_elements.check_logged_in(expected)
+    def is_current_user(self, expected):
+        self.login_form_elements.check_is_current_user(expected)

@@ -58,5 +58,5 @@ class BasePage(object):
         """Go to pages URL."""
         target_url = url
         self.driver.get(target_url)
-        import time
-        time.sleep(10)
+        # import time
+        # time.sleep(10)

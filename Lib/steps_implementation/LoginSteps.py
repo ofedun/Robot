@@ -23,12 +23,11 @@ class LoginSteps(object):
     def attempt_to_login_with_credentials(self, username, password):
         self.login_page.login(username, password)
 
-    def logged_in_on_main_page(self):
-        on_main_page = self.login_page.is_current_page()
-        assert on_main_page
+    def logged_in_on_main_page(self, expected):
+        actual_user = self.login_page.is_current_user(expected)
+        assert actual_user == expected
 
-    # def logged_in_on_main_page(self, expected):
-    #     username = self.get_text()
+
     #     assert username == expected
     #     if not username(expected):
     #         raise AssertionError("No username: '%s'" % (expected))
