@@ -1,7 +1,6 @@
 """Login page object."""
 from Lib.pages import BasePage
 from Lib.elements import LoginForm
-from selenium import webdriver
 
 
 class LoginPage(BasePage):
@@ -10,25 +9,39 @@ class LoginPage(BasePage):
     Provides API for Login page.
     """
     def __init__(self):
-        super(BasePage, self).__init__()
-        self.driver = webdriver.Chrome('/usr/bin/chromedriver')
+        BasePage.__init__(self)
         self.login_form_elements = LoginForm(self.driver)
 
 
     def login(self, username, password):
+        """Login into AddressBook site.
+
+        Args:
+            username (str): the username of AddressBook user.
+            password (str): the password to set.
+        """
         self.visit()
         self.login_form_elements.enter_username(username)
         self.login_form_elements.enter_password(password)
-        self.click_submit_button()
+        self.login_form_elements.click_submit_button()
 
     def enter_username(self, username):
+        """Enter username on Login form.
+
+        Args:
+            username (str): the username of AddressBook user.
+        """
         self.login_form_elements.enter_username(username)
 
     def enter_password(self, password):
+        """Enter password on Login form.
+
+        Args:
+            password (str): the password to set.
+        """
         self.login_form_elements.enter_password(password)
 
     def click_submit_button(self):
+        """Click Submit button on Login form."""
         self.login_form_elements.click_submit_button()
 
-    def is_current_user(self, expected):
-        self.login_form_elements.check_is_current_user(expected)

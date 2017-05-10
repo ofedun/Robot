@@ -1,11 +1,13 @@
 """Steps for Login functionality."""
 from Lib.pages import LoginPage
+# from Lib.pages import HomePage
 
 
 class LoginSteps(object):
 
     def __init__(self):
         self.login_page = LoginPage()
+        # self.home_page = HomePage()
 
 
     def open_login_page(self, url, browser):
@@ -20,14 +22,9 @@ class LoginSteps(object):
     def click_login_button(self):
         self.login_page.click_submit_button()
 
-    def attempt_to_login_with_credentials(self, username, password):
-        self.login_page.login(username, password)
+    # def attempt_to_login_with_credentials(self, username, password):
+    #     self.login_page.login(username, password)
 
     def logged_in_on_main_page(self, expected):
-        actual_user = self.login_page.is_current_user(expected)
+        actual_user = self.home_page.get_current_username(expected)
         assert actual_user == expected
-
-
-    #     assert username == expected
-    #     if not username(expected):
-    #         raise AssertionError("No username: '%s'" % (expected))

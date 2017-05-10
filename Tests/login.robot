@@ -10,9 +10,6 @@ ${BROWSER}    Chrome
 ${URL}    http://localhost/addressbook/
 ${username}    admin
 ${password}    secret
-#${ALIAS}    None
-#${DESIRED_CAPABILITIES}    platform:UBUNTU
-#${REMOTE_URL}
 
 
 *** Test Cases ***
