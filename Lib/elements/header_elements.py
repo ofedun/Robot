@@ -15,7 +15,7 @@ class HeaderElement(BaseElement):
 
     def get_current_username(self, expected):
         self.driver.find_element_by_link_text(
-                ELEMENTMAP['logout_link'])
+            ELEMENTMAP['logout_link'])
         username = self.driver.find_element_by_xpath(
             ELEMENTMAP['logged_username'].format(name=expected))
         return username.text[1:-1]

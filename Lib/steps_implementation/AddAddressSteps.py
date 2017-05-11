@@ -5,8 +5,8 @@ from Lib.pages import HomePage
 class AddAddressBook(object):
 
     def __init__(self):
-        self.add_address_book_page = AddAddressBookPage
-        self.home_page = HomePage
+        self.add_address_book_page = AddAddressBookPage()
+        self.home_page = HomePage()
 
 
     def open_add_new_address_page(self):

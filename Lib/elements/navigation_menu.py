@@ -2,7 +2,7 @@
 from Lib.elements import BaseElement
 
 ELEMENTMAP = {
-    'add_new_link': '//li[@class="all"]/a[contains(text(), "add new")]'
+    'menu_item': '//li[@class="all"]/a[contains(text(), "{item_name}")]'
 }
 
 class NavigationElement(BaseElement):
@@ -12,13 +12,11 @@ class NavigationElement(BaseElement):
         super(BaseElement, self).__init__()
         self.driver = driver
 
-    def get_current_username(self, expected):
-        self.driver.find_element_by_link_text(
-            ELEMENTMAP['logout_link'])
-        username = self.driver.find_element_by_xpath(
-            ELEMENTMAP['logged_username'].format(name=expected))
-        return username.text[1:-1]
 
-    def open_add_new_address(self):
+    # def open_add_new_address(self):
+    #     self.driver.find_element_by_xpath(
+    #         ELEMENTMAP['add_new_link']).click()
+
+    def click_menu_item(self, item_name):
         self.driver.find_element_by_xpath(
-            ELEMENTMAP['add_new_link']).click()
+            ELEMENTMAP['menu_item'].format(item_name=item_name)).click()
