@@ -6,8 +6,8 @@ from Lib.elements import NavigationElement
 
 class BaseAuthPage(BasePage):
     """BaseAuth Page of Address Book."""
-    def __init__(self, driver=None):
-        BasePage.__init__(self)
+    def __init__(self, driver):
+        BasePage.__init__(self, driver)
         self.header_elements = HeaderElement(self.driver)
         self.navigation_menu = NavigationElement(self.driver)
 

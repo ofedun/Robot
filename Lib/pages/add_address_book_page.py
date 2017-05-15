@@ -1,5 +1,5 @@
 """Add AddressBook page object."""
-from Lib.pages import BaseAuthPage
+from Lib.pages.base_auth_page import BaseAuthPage
 from Lib.elements import AddAddressBookForm
 
 class AddAddressBookPage(BaseAuthPage):
@@ -7,8 +7,8 @@ class AddAddressBookPage(BaseAuthPage):
 
     Provides API for Add AddressBook page.
     """
-    def __init__(self):
-        BaseAuthPage.__init__(self)
+    def __init__(self, driver):
+        BaseAuthPage.__init__(self, driver)
         self.add_address_element = AddAddressBookForm(self.driver)
 
     def enter_valid_data(self):

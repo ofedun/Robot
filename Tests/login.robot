@@ -14,7 +14,7 @@ ${password}    secret
 
 *** Test Cases ***
 Login to AddressBook
-    [Tags]    robot
+#    [Tags]    robot
     Open browser to Login page    ${URL}  ${BROWSER}
     Attempt to login with valid credentials
     I am logged in on main page

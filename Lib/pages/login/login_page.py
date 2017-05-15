@@ -8,8 +8,8 @@ class LoginPage(BasePage):
 
     Provides API for Login page.
     """
-    def __init__(self):
-        BasePage.__init__(self)
+    def __init__(self, driver):
+        BasePage.__init__(self, driver)
         self.login_form_elements = LoginForm(self.driver)
 
 
