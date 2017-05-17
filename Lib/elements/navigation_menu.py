@@ -1,4 +1,6 @@
 """Logic code for Navigation object."""
+from selenium.webdriver.support.wait import WebDriverWait
+
 from Lib.elements import BaseElement
 
 ELEMENTMAP = {
@@ -13,10 +15,20 @@ class NavigationElement(BaseElement):
         self.driver = driver
 
 
-    # def open_add_new_address(self):
-    #     self.driver.find_element_by_xpath(
-    #         ELEMENTMAP['add_new_link']).click()
-
     def click_menu_item(self, item_name):
+        import time
+        time.sleep(10)
         self.driver.find_element_by_xpath(
             ELEMENTMAP['menu_item'].format(item_name=item_name)).click()
+
+        # item = self.driver.find_element_by_xpath(
+        #     ELEMENTMAP['menu_item'].format(item_name=item_name))
+        # if item.isDisplayed:
+        #     item.click()
+        # else:
+        #     WebDriverWait(10).until(item.isDisplayed)
+
+        # item = self.driver.find_element_by_xpath(
+        #     ELEMENTMAP['menu_item'].format(item_name=item_name)).click()
+        # if self.is_element_visible_by_xpath(item):
+        #     item.click()

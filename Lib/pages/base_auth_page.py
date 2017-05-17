@@ -24,9 +24,9 @@ class BaseAuthPage(BasePage):
         """
         return self.header_elements.get_current_username(expected)
 
-    def open_add_new_address(self):
+    def open_menu_item(self, item_name):
         """Open Add New Address page."""
-        self.navigation_menu.click_menu_item('add new')
+        self.navigation_menu.click_menu_item(item_name)
 
     # def select_navigation(self):
     #
