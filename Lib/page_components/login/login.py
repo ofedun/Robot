@@ -1,5 +1,5 @@
 """Component API for Login form."""
-from Lib.elements import BaseElement
+from Lib.page_components import BaseElement
 
 
 ELEMENTMAP = {

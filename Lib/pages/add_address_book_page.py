@@ -1,6 +1,6 @@
 """Add AddressBook page object."""
 from Lib.pages.base_auth_page import BaseAuthPage
-from Lib.elements import AddAddressBookForm
+from Lib.page_components import AddAddressBookForm
 
 class AddAddressBookPage(BaseAuthPage):
     """Add AddressBook page.

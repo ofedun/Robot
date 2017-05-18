@@ -1,5 +1,5 @@
 """Logic code for Header object"""
-from Lib.elements import BaseElement
+from Lib.page_components import BaseElement
 
 ELEMENTMAP = {
     'logout_link': 'Logout',

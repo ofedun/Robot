@@ -1,13 +1,14 @@
 """Steps for Login functionality."""
 from Lib.pages import LoginPage
 from Lib.pages import HomePage
-from Lib.steps_implementation.base_test import BaseTest
+from Lib.steps_implementation.Browser import Browser
 
 
-class LoginSteps(BaseTest):
+class LoginSteps(object):
 
     def __init__(self):
-        BaseTest.__init__(self)
+        self.driver = Browser().get_driver()
+
         self.login_page = LoginPage(self.driver)
         self.home_page = HomePage(self.driver)
 

@@ -1,7 +1,7 @@
 import time
 
 class BaseElement(object):
-    """Class for handling elements on pages."""
+    """Class for handling page_components on pages."""
     def __init__(self, driver, wait_time, klass, element_id):
         self.driver = driver
         self.klass = klass

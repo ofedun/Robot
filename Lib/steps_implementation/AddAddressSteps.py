@@ -2,13 +2,14 @@
 from Lib.pages import AddAddressBookPage
 from Lib.pages import HomePage
 from Lib.pages import BaseAuthPage
-from Lib.steps_implementation.base_test import BaseTest
+from Lib.steps_implementation.Browser import Browser
 
 
-class AddAddressSteps(BaseTest):
+class AddAddressSteps(object):
 
     def __init__(self):
-        BaseTest.__init__(self)
+        self.driver = Browser().get_driver()
+
         self.add_address_book_page = AddAddressBookPage(self.driver)
         self.home_page = HomePage(self.driver)
         self.base_auth_page = BaseAuthPage(self.driver)

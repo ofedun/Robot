@@ -1,7 +1,7 @@
 """Address Book BaseAuth Page object."""
 from .base_page import BasePage
-from Lib.elements import HeaderElement
-from Lib.elements import NavigationElement
+from Lib.page_components import HeaderElement
+from Lib.page_components import NavigationElement
 
 
 class BaseAuthPage(BasePage):

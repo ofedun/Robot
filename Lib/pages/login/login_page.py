@@ -1,6 +1,6 @@
 """Login page object."""
 from Lib.pages import BasePage
-from Lib.elements import LoginForm
+from Lib.page_components import LoginForm
 
 
 class LoginPage(BasePage):

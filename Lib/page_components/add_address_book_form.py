@@ -1,5 +1,6 @@
 """Component API for Add AddressBook form."""
-from Lib.elements import BaseElement
+from Lib.elements import InputField
+from Lib.page_components import BaseElement
 
 ELEMENTMAP = {
     'next_button': '//input[@value="Next"][1]',
@@ -14,22 +15,32 @@ ELEMENTMAP = {
 
 }
 
+# driver = 'blahhh'
+
+
 class AddAddressBookForm(BaseElement):
     """Functionality for the Add AddressBook form."""
     def __init__(self, driver):
         super(BaseElement, self).__init__()
         self.driver = driver
 
+        for key, value in ELEMENTMAP.items():
+            setattr(self, key, InputField(value))
+
     def enter_valid_data(self, address_data):
         next_button = self.driver.find_by_xpath['next_button']
         next_button.click()
-        for fild_name, value in address_data:
-            form_element = self.get_form_element(
-                self, ELEMENTMAP[self.to_form_element_name(fild_name)])
-            form_element.set_value(value)
+        for field_name, value in address_data.items():
+            # form_element = self.get_form_element(
+            #     self, ELEMENTMAP[self.to_form_element_name(fild_name)])
+            getattr(self, field_name.replace(' ', '_').lower()).set_value(value)
+            # form_element = self.driver.find_by_xpath(ELEMENTMAP[field_name])
+            # form_element.sendKeys(value)
 
 
     def click_add_address_action(self):
-        enter_button = self.driver.find_by_text(
+        enter_button = self.driver.find_by_xpath(
             ELEMENTMAP['enter_button'])
         enter_button.click()
+        # print(driver)
+        # print(self.driver)
