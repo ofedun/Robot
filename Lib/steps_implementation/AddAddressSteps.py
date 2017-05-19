@@ -15,7 +15,7 @@ class AddAddressSteps(object):
         self.base_auth_page = BaseAuthPage(self.driver)
 
 
-    def open_add_new_address_page(self, item_name):
+    def open_add_address_page(self, item_name):
         self.base_auth_page.open_menu_item(item_name)
 
     def enter_valid_data(self):
@@ -25,13 +25,13 @@ class AddAddressSteps(object):
     def prepare_address_properties(self):
         # address_data = {}
         default_data = {
-            'First name': '',
-            'Middle name': '',
-            'Last name': '',
-            'Address': '',
-            'Company': '',
-            'Mobile': '',
-            'E-mail': ''
+            'First name': 'First name',
+            'Middle name': 'Middle name',
+            'Last name': 'Last',
+            'Address': 'Address',
+            'Company': 'Company',
+            'Mobile': 'Mobile',
+            'Email': 'Email'
         }
         # default_data.update(address_data)
         return default_data

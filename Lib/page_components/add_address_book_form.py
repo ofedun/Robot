@@ -1,16 +1,18 @@
 """Component API for Add AddressBook form."""
 from Lib.elements import InputField
-from Lib.page_components import BaseElement
+from Lib.elements import BaseElement
+
+GLOBAL_TIMEOUT = 10
 
 ELEMENTMAP = {
     'next_button': '//input[@value="Next"][1]',
     'first_name': '//input[@name="firstname"]',
     'middle_name': '//input[@name="middlename"]',
     'last_name': '//input[@name="lastname"]',
-    'address_input': '//textarea[@name="address"]',
+    'address': '//textarea[@name="address"]',
     'company': '//input[@name="company"]',
     'email': '//input[@name="email"]',
-    'mobile_telephone': '//input[@name="mobile"]',
+    'mobile': '//input[@name="mobile"]',
     'enter_button': '//input[@value="Enter"][2]'
 
 }
@@ -24,22 +26,28 @@ class AddAddressBookForm(BaseElement):
         super(BaseElement, self).__init__()
         self.driver = driver
 
-        for key, value in ELEMENTMAP.items():
-            setattr(self, key, InputField(value))
+
+        # for key, value in ELEMENTMAP.items():
+        #     setattr(self, key, InputField(self, value))
+
+        self.first_name = InputField(self.driver, ELEMENTMAP['first_name'])
+        self.middle_name = InputField(self.driver, ELEMENTMAP['middle_name'])
+        self.last_name = InputField(self.driver, ELEMENTMAP['last_name'])
+        self.address = InputField(self.driver, ELEMENTMAP['address'])
+        self.company = InputField(self.driver, ELEMENTMAP['company'])
+        self.email = InputField(self.driver, ELEMENTMAP['email'])
+        self.mobile = InputField(self.driver, ELEMENTMAP['mobile'])
+
 
     def enter_valid_data(self, address_data):
-        next_button = self.driver.find_by_xpath['next_button']
+        next_button = self.driver.find_element_by_xpath(ELEMENTMAP['next_button'])
         next_button.click()
         for field_name, value in address_data.items():
-            # form_element = self.get_form_element(
-            #     self, ELEMENTMAP[self.to_form_element_name(fild_name)])
             getattr(self, field_name.replace(' ', '_').lower()).set_value(value)
-            # form_element = self.driver.find_by_xpath(ELEMENTMAP[field_name])
-            # form_element.sendKeys(value)
 
 
     def click_add_address_action(self):
-        enter_button = self.driver.find_by_xpath(
+        enter_button = self.driver.find_element_by_xpath(
             ELEMENTMAP['enter_button'])
         enter_button.click()
         # print(driver)

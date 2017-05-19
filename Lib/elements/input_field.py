@@ -1,18 +1,23 @@
 """Class for handling input field elements."""
-from selenium.common.exceptions import NoSuchElementException
+from base_element import BaseElement
 
 
-class InputField(object):
-    def __init__(self, locator, driver, xpath, timeout):
-        self.locator = locator
+class InputField(BaseElement):
+    def __init__(self, driver):
+        super(BaseElement, self).__init__()
         self.driver = driver
-        self.xpath = xpath
-        self.timeout = timeout
+
+
+    # def set_value(self, value):
+    #     """Set the value of the form element."""
+    #     element = self.driver.find_element_by_xpath(self.locator)
+    #     if element.is_displayed():
+    #         element.send_keys(value)
 
     def set_value(self, value):
         """Set the value of the form element."""
-        self.driver.is_element_present_by_id(self.xpath, self.timeout)
-        value.send_keys()
+        element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
+        element.send_keys(value)
 
     def get_value(self):
         """Get the value of the form element.
@@ -20,12 +25,5 @@ class InputField(object):
         Returns:
             (str): A field value.
         """
-        self.driver.is_element_present_by_id(self.xpath, self.timeout)
-        return self.driver.find_by_id(self.xpath).first.value
-
-    def is_element_present_by_id(self, text):
-        try:
-            body = self.driver.find_element_by_xpath(self.xpath)  # find element by xpath
-        except NoSuchElementException:
-            return False
-        return text in body.text  # check if the xpath is present
+        element = self.find_visible_element(self.locator, self.locator, self.timeout)
+        return element

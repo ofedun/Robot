@@ -18,9 +18,11 @@ Add new AddressBook
     I add new address
 #    The address should be created
 
+
 *** Keywords ***
 I add new address
-    Open Add New address page    ${item_name}
+#    [Arguments]    ${item_name}
+    Open Add address page    ${item_name}
     Enter valid data
 
 #The address should be created
