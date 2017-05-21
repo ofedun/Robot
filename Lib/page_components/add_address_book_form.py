@@ -30,13 +30,14 @@ class AddAddressBookForm(BaseElement):
         # for key, value in ELEMENTMAP.items():
         #     setattr(self, key, InputField(self, value))
 
-        self.first_name = InputField(self.driver, ELEMENTMAP['first_name'])
-        self.middle_name = InputField(self.driver, ELEMENTMAP['middle_name'])
-        self.last_name = InputField(self.driver, ELEMENTMAP['last_name'])
-        self.address = InputField(self.driver, ELEMENTMAP['address'])
-        self.company = InputField(self.driver, ELEMENTMAP['company'])
-        self.email = InputField(self.driver, ELEMENTMAP['email'])
-        self.mobile = InputField(self.driver, ELEMENTMAP['mobile'])
+        # self.first_name = InputField(self.driver, ELEMENTMAP['first_name'])
+        self.first_name = InputField(ELEMENTMAP['first_name'])
+        self.middle_name = InputField(ELEMENTMAP['middle_name'])
+        self.last_name = InputField(ELEMENTMAP['last_name'])
+        self.address = InputField(ELEMENTMAP['address'])
+        self.company = InputField(ELEMENTMAP['company'])
+        self.email = InputField(ELEMENTMAP['email'])
+        self.mobile = InputField(ELEMENTMAP['mobile'])
 
 
     def enter_valid_data(self, address_data):

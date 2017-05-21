@@ -56,3 +56,12 @@ class BasePage(object):
         target_url = url
         self.driver.get(target_url)
 
+    # def setup(self):
+    #     self.driver = webdriver.Chrome()
+    #     self.page = personalCenter(self.driver, "admin", "secret")
+
+    def tearDown(self):
+        """Quit browser."""
+        # self.selenium.stop()
+        # self.page.quit()
+        self.driver.quit()

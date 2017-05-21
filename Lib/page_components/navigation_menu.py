@@ -1,7 +1,7 @@
 """Logic code for Navigation object."""
 from selenium.webdriver.support.wait import WebDriverWait
 
-from Lib.page_components import BaseElement
+from Lib.elements import BaseElement
 
 ELEMENTMAP = {
     'menu_item': '//li[@class="all"]/a[contains(text(), "{item_name}")]'

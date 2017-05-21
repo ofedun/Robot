@@ -22,6 +22,9 @@ class AddAddressSteps(object):
         default_data = self.prepare_address_properties()
         self.add_address_book_page.enter_valid_data(default_data)
 
+    def search_an_address(self, value):
+        self.home_page.search_an_address(value)
+
     def prepare_address_properties(self):
         # address_data = {}
         default_data = {
