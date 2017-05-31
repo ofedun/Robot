@@ -34,7 +34,7 @@ class BaseElement(object):
     def find_visible_element(self, locator_type, locator, timeout=None):
         # element = getattr(self, 'find_by_' + locator_type)(locator)
         wait = WebDriverWait(self.driver, 10)
-        # elements = wait.until(EC.presence_of_element_located((self.driver, By.XPATH(locator))))
+        # elements = wait.until(EC.presence_of_element_located((By.XPATH, locator)))
         elements = wait.until(EC.presence_of_element_located(
-            getattr(self.driver, 'find_element_by_' + locator_type)(locator)))
+            getattr(self.driver, 'find_element_by_' + locator_type(locator))))
         return elements

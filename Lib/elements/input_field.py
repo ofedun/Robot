@@ -7,8 +7,6 @@ class InputField(BaseElement):
         self.driver = driver
         self.locator_type = element_tuple[0]
         self.locator = element_tuple[1]
-        # self.locator_type = locator_type
-        # self.locator = locator
         self.timeout = timeout
         super(BaseElement, self).__init__()
 
