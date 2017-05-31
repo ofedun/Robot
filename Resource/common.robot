@@ -1,7 +1,11 @@
 *** Settings ***
 Documentation    Suite description
-Library    Selenium2Library
+Test Setup    Open Login page
+Test Teardown    Close browser
+#Suite Teardown    Close All Browsers
+#Library    Selenium2Library
 Library    Lib/steps_implementation/LoginSteps.py
+Library    Lib/steps_implementation/Browser.py
 Resource    Resource/common.robot
 
 *** Variables ***
@@ -9,6 +13,7 @@ ${BROWSER}    Chrome
 ${URL}    http://localhost/addressbook/
 ${username}    admin
 ${password}    secret
+${GLOBAL_TIMEOUT}    10
 
 
 *** Keywords ***
@@ -23,3 +28,5 @@ Attempt to login with valid credentials
 
 I am logged in on main page
     Is logged in on main page    ${username}
+
+Test Teardown    Close browser

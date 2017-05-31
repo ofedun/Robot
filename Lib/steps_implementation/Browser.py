@@ -15,3 +15,8 @@ class Browser(object):
 
     def get_driver(self):
         return self.driver
+
+    def close_browser(self):
+        """Quit browser."""
+        # self.selenium.stop()
+        self.driver.quit()

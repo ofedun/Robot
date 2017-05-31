@@ -3,11 +3,12 @@ Documentation    Suite description
 Library    Lib/steps_implementation/AddAddressSteps.py
 Library    Lib/steps_implementation/LoginSteps.py
 Resource   Resource/common.robot
-Variables    Variables  /variable.robot
+#Variables    Variables  /variable.robot
 
 
 *** Variables ***
 ${item_name}    add new
+${address_name}    Address
 
 
 *** Test Cases ***
@@ -25,4 +26,4 @@ I add new address
     Enter valid data
 
 The address should be created
-    Search an address
+    Search an address    ${address_name}    Address

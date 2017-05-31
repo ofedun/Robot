@@ -31,7 +31,7 @@ class SearchTable(BaseElement):
         self.driver.find_element_by_xpath(ELEMENTMAP['single_search_results_row'])
         self.driver.find_element_by_xpath(ELEMENTMAP['search_box']).sendKeys(value)
         if self.driver.find_element_by_xpath(ELEMENTMAP['no_results_row']):
-            WebDriverWait(self.driver, GLOBAL_TIMEOUT).until(ELEMENTMAP['row'], ATTRIBUTE)
+            WebDriverWait(self.driver, GLOBAL_TIMEOUT=10).until(ELEMENTMAP['row'], ATTRIBUTE)
         return self.find_text_in_search_results(value)
 
     def find_text_in_search_results(self, value):

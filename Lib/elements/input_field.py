@@ -3,21 +3,21 @@ from base_element import BaseElement
 
 
 class InputField(BaseElement):
-    def __init__(self, driver):
-        super(BaseElement, self).__init__()
+    def __init__(self, driver, element_tuple, timeout=10):
         self.driver = driver
+        self.locator_type = element_tuple[0]
+        self.locator = element_tuple[1]
+        # self.locator_type = locator_type
+        # self.locator = locator
+        self.timeout = timeout
+        super(BaseElement, self).__init__()
 
-
-    # def set_value(self, value):
-    #     """Set the value of the form element."""
-    #     element = self.driver.find_element_by_xpath(self.locator)
-    #     if element.is_displayed():
-    #         element.send_keys(value)
 
     def set_value(self, value):
         """Set the value of the form element."""
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
-        element.send_keys(value)
+        if element.is_displayed():
+            element.send_keys(value)
 
     def get_value(self):
         """Get the value of the form element.
@@ -25,5 +25,5 @@ class InputField(BaseElement):
         Returns:
             (str): A field value.
         """
-        element = self.find_visible_element(self.locator, self.locator, self.timeout)
+        element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
         return element

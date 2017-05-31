@@ -60,7 +60,7 @@ class BasePage(object):
     #     self.driver = webdriver.Chrome()
     #     self.page = personalCenter(self.driver, "admin", "secret")
 
-    def tearDown(self):
+    def tear_down(self):
         """Quit browser."""
         # self.selenium.stop()
         # self.page.quit()
