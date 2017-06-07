@@ -30,9 +30,3 @@ class LoginSteps(object):
     def is_logged_in_on_main_page(self, expected):
         actual_user = self.home_page.get_current_username(expected)
         assert actual_user == expected
-
-    # def close_all_browsers(self):
-    #     self.base_page.tear_down()
-
-    # def attempt_to_login_with_credentials(self, username, password):
-    #     self.login_page.login(username, password)

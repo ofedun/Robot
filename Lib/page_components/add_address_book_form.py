@@ -1,9 +1,8 @@
 """Component API for Add AddressBook form."""
 from Lib.elements import InputField
-from Lib.elements import BaseElement
 from Lib.elements import Button
+from Lib.page_components import BaseComponent
 
-# GLOBAL_TIMEOUT = 10
 
 ELEMENTMAP = {
     'next_button': ('xpath', '//input[@value="Next"][1]'),
@@ -21,12 +20,11 @@ ELEMENTMAP = {
 # driver = 'blahhh'
 
 
-class AddAddressBookForm(BaseElement):
+class AddAddressBookForm(BaseComponent):
     """Functionality for the Add AddressBook form."""
     def __init__(self, driver):
-        super(BaseElement, self).__init__()
+        super(BaseComponent, self).__init__()
         self.driver = driver
-
 
         # for key, value in ELEMENTMAP.items():
         #     setattr(self, key, InputField(self, value))
@@ -38,21 +36,22 @@ class AddAddressBookForm(BaseElement):
         self.company = InputField(self.driver, ELEMENTMAP['company'])
         self.email = InputField(self.driver, ELEMENTMAP['email'])
         self.mobile = InputField(self.driver, ELEMENTMAP['mobile'])
-        # self.next_button = Button(self.driver, ELEMENTMAP['next_button'])
-        # self.enter_button = Button(self.driver, ELEMENTMAP['enter_button'])
+        self.next_button = Button(self.driver, ELEMENTMAP['next_button'])
+        self.enter_button = Button(self.driver, ELEMENTMAP['enter_button'])
 
 
     def enter_valid_data(self, address_data):
-        next_button = self.driver.find_element_by_xpath(ELEMENTMAP['next_button'][1])
-        next_button.click()
-        # self.next_button.click_with_retry()
+        """Enter data on add addressbook form.
+
+        Args:
+            address_data(dict): An address data dict.
+        """
+        self.next_button.click()
         for field_name, value in address_data.items():
             getattr(self, field_name.replace(' ', '_').lower()).set_value(value)
 
 
     def click_add_address_action(self):
-        enter_button = self.driver.find_element_by_xpath(
-            ELEMENTMAP['enter_button'][1])
-        enter_button.click()
+        self.enter_button.click()
         # print(driver)
         # print(self.driver)

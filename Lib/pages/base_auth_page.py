@@ -19,7 +19,7 @@ class BaseAuthPage(BasePage):
             expected (str): the name of expected user.
 
         Returns:
-            bool: True if expected user is logged in.
+            str: Name of logged in user.
 
         """
         return self.header_elements.get_current_username(expected)

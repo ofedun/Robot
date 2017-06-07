@@ -1,6 +1,7 @@
 """logic code for Search object."""
 from selenium.webdriver.support.ui import WebDriverWait
 from Lib.elements import BaseElement
+from Lib.elements import InputField
 
 DEFAULT_CONTAINER = '//table[@id="maintable"]'
 ATTRIBUTE = 'test'
@@ -19,8 +20,11 @@ class SearchTable(BaseElement):
         super(BaseElement, self).__init__()
         self.driver = driver
 
+        self.search_field = InputField(self.driver, ELEMENTMAP['search_box'])
+
     def search_for_items(self, value):
         """Perform a search."""
+        self.search_field.set_value()
         self.driver.find_element_by_xpath(ELEMENTMAP['search_box'])
         row = self.driver.find_element_by_xpath(ELEMENTMAP['row'])
         script = 'arguments[0].setAttribute("{attr}", "{value}")'.format(

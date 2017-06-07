@@ -5,25 +5,23 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 class BaseElement(object):
-    def __init__(self, driver, locator, locator_type, timeout=10):
+    def __init__(self, driver, element_tuple, timeout=10):
         self.driver = driver
-        self.locator = locator
-        self.locator_type = locator_type
+        self.locator_type = element_tuple[0]
+        self.locator = element_tuple[1]
         self.timeout = timeout
 
     def click(self):
+        """Click action."""
         self.element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
         self.element.click()
 
-    def click_element_with_retry(self, locator_type, locator):
-        """Click an element.
-
-        If there is one of the listed exceptions the click is tried again.
-        """
-        getattr(self.driver, 'find_element_by_' + locator_type)(locator).click()
-
     def get_text(self):
-        """Get element text."""
+        """Get element text.
+
+        Returns:
+            str: text of the element.
+        """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
         return element.getText()
 
@@ -32,9 +30,9 @@ class BaseElement(object):
         return getattr(self.driver, 'find_element_by_' + locator_type)(locator)
 
     def find_visible_element(self, locator_type, locator, timeout=None):
-        # element = getattr(self, 'find_by_' + locator_type)(locator)
         wait = WebDriverWait(self.driver, 10)
         # elements = wait.until(EC.presence_of_element_located((By.XPATH, locator)))
-        elements = wait.until(EC.presence_of_element_located(
-            getattr(self.driver, 'find_element_by_' + locator_type(locator))))
+        # my_by_xpath = By.XPATH
+        my_by_xpath = getattr(By, locator_type.upper())
+        elements = wait.until(EC.presence_of_element_located((my_by_xpath, locator)))
         return elements

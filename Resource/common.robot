@@ -1,7 +1,5 @@
 *** Settings ***
 Documentation    Suite description
-Test Setup    Open Login page
-Test Teardown    Close browser
 #Suite Teardown    Close All Browsers
 #Library    Selenium2Library
 Library    Lib/steps_implementation/LoginSteps.py
@@ -29,4 +27,5 @@ Attempt to login with valid credentials
 I am logged in on main page
     Is logged in on main page    ${username}
 
-Test Teardown    Close browser
+Close application
+    Close browser
