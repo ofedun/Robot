@@ -1,5 +1,4 @@
 """Component API for Login form."""
-# from Lib.elements import BaseElement
 from Lib.page_components import BaseComponent
 from Lib.elements import InputField, Button
 
@@ -42,16 +41,9 @@ class LoginForm(BaseComponent):
 
     def enter_username(self, username):
         self.username.set_value(username)
-        # self.driver.find_element_by_name(
-        #     ELEMENTMAP['username']).send_keys(username)
 
     def enter_password(self, password):
         self.password.set_value(password)
-        # self.driver.find_element_by_name(
-        #     ELEMENTMAP['password']).send_keys(password)
 
     def click_submit_button(self):
-        # login_button = self.driver.find_element_by_xpath(
-        #     ELEMENTMAP['login_button'])
-        # login_button.click()
         self.login_button.click()

@@ -12,7 +12,11 @@ class InputField(BaseElement):
 
 
     def set_value(self, value):
-        """Set the value of the form element."""
+        """Set the value of the form element.
+
+        Args:
+           value(str): Value to be set.
+        """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
         if element.is_displayed():
             element.send_keys(value)

@@ -23,11 +23,12 @@ class BaseElement(object):
             str: text of the element.
         """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
-        return element.getText()
+        return element.text[1:-1]
 
-    def get_element_with_retry(self, locator_type, locator):
+    def get_element_with_retry(self):
         """Get element(s)."""
-        return getattr(self.driver, 'find_element_by_' + locator_type)(locator)
+        element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
+        return getattr(self.driver, element)
 
     def find_visible_element(self, locator_type, locator, timeout=None):
         wait = WebDriverWait(self.driver, 10)

@@ -1,20 +1,22 @@
 """Logic code for Header object."""
-from Lib.elements import BaseElement
 from Lib.page_components import BaseComponent
+from Lib.elements import TextElement
 
 ELEMENTMAP = {
-    'logout_link': 'Logout',
+    'logout_link': '//form[@name="logout"]//a[contains(., "Logout")]',
     'logged_username': '//form[@class="header"]/b["{{name}}"]'
 }
 
-class HeaderElement(BaseElement):
+class HeaderElement(BaseComponent):
     """Functionality for the AddressBook header panel."""
 
     def __init__(self, driver):
-        super(BaseElement, self).__init__()
+        super(BaseComponent, self).__init__()
         self.driver = driver
 
-        # self.logout_link =
+        # self.logout_link = Link(self.driver, ELEMENTMAP['logout_link'])
+        # self.logged_username = TextElement(self.driver, ELEMENTMAP['logged_username'])
+
 
     def get_current_username(self, expected):
         """Get current logged in username.
@@ -24,10 +26,12 @@ class HeaderElement(BaseElement):
 
         Returns:
             str: Logged in username.
-
         """
-        self.driver.find_element_by_link_text(
-            ELEMENTMAP['logout_link'])
-        username = self.driver.find_element_by_xpath(
-            ELEMENTMAP['logged_username'].format(name=expected))
-        return username.text[1:-1]
+        username = TextElement(self.driver, ('xpath', ELEMENTMAP['logged_username'].format(name=expected)))
+        return username.get_text()
+
+        # self.driver.find_element_by_link_text(
+        #     ELEMENTMAP['logout_link'])
+        # username = self.driver.find_element_by_xpath(
+        #     ELEMENTMAP['logged_username'].format(name=expected))
+        # return username.text[1:-1]

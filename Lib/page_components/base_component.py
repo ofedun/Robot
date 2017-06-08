@@ -5,8 +5,4 @@ class BaseComponent(object):
 
     Provides functionality for page components.
     """
-    def __init__(self, driver, element_tupple, timeout=10):
-        self.driver = driver
-        self.locator_type = element_tupple[0]
-        self.locator = element_tupple[1]
-        self.timeout = timeout
+

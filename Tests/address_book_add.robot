@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Suite description
 Test Setup    Open browser to Login page    ${URL}  ${BROWSER}
-Test Teardown    Close application
+#Test Teardown    Close application
 Library    Lib/steps_implementation/AddAddressSteps.py
 Library    Lib/steps_implementation/LoginSteps.py
 Resource   Resource/common.robot
@@ -10,7 +10,7 @@ Resource   Resource/common.robot
 
 *** Variables ***
 ${item_name}
-${address_name}    Address
+#${address_name}    Address
 
 
 *** Test Cases ***
@@ -35,7 +35,7 @@ I add new address
     Enter valid data
 
 The address should be created
-    Search an address    ${address_name}    Address
+    Search an address    Address
 
 I edit an address
     Open Edit address page    ${item_name}    home
