@@ -28,7 +28,7 @@ class HeaderElement(BaseComponent):
             str: Logged in username.
         """
         username = TextElement(self.driver, ('xpath', ELEMENTMAP['logged_username'].format(name=expected)))
-        return username.get_text()
+        return username.get_text()[1:-1]
 
         # self.driver.find_element_by_link_text(
         #     ELEMENTMAP['logout_link'])

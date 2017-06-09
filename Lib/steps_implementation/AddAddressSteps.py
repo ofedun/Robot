@@ -26,7 +26,7 @@ class AddAddressSteps(object):
 
     def search_an_address(self, value):
         self.home_page.search_an_address(value)
-        actual_results = self.home_page.get_search_results(value)
+        actual_results = self.home_page.get_search_results()
         assert value in actual_results
 
     def open_edit_address_page(self, item_name):

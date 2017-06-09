@@ -23,7 +23,7 @@ class BaseElement(object):
             str: text of the element.
         """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
-        return element.text[1:-1]
+        return element.text
 
     def get_element_with_retry(self):
         """Get element(s)."""

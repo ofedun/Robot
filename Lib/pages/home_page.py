@@ -18,7 +18,7 @@ class HomePage(BaseAuthPage):
         self.actual_value = self.search_table.search_for_items(value)
         # assert actual_value == value
 
-    def get_search_results(self, value):
+    def get_search_results(self):
         """Get search results."""
-        actual_results = self.search_table.get_search_results(value)
+        actual_results = self.search_table.get_search_results()
         return actual_results
