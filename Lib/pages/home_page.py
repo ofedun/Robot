@@ -16,7 +16,6 @@ class HomePage(BaseAuthPage):
             value(str): A value to be searched.
         """
         self.actual_value = self.search_table.search_for_items(value)
-        # assert actual_value == value
 
     def get_search_results(self):
         """Get search results."""

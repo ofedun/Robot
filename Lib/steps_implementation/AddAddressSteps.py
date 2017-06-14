@@ -27,7 +27,8 @@ class AddAddressSteps(object):
     def search_an_address(self, value):
         self.home_page.search_an_address(value)
         actual_results = self.home_page.get_search_results()
-        assert value in actual_results
+        for item in actual_results:
+            assert item == actual_results[item]
 
     def open_edit_address_page(self, item_name):
         self.base_auth_page.open_menu_item(item_name)
