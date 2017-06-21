@@ -27,14 +27,23 @@ class AddAddressSteps(object):
     def search_an_address(self, value):
         self.home_page.search_an_address(value)
         actual_results = self.home_page.get_search_results()
-        for item in actual_results:
-            assert item == actual_results[item]
+        # for item in actual_results:
+        #     assert item in actual_results[item]
+        for k, v in actual_results:
+            assert value in actual_results[v]
 
-    def open_edit_address_page(self, item_name):
-        self.base_auth_page.open_menu_item(item_name)
+    def open_edit_address_page(self, address_name):
+        self.home_page.open_edit_address(address_name)
 
-    def i_edit_the_address(self):
-        self.edit_address_page.edit_an_address()
+    def i_edit_an_address_with_the_details(self):
+        address_update_data = {
+            'First name': 'Robot',
+            'Last name': 'Test1',
+            'Address': 'New York'
+        }
+        default_data = self.prepare_address_properties()
+        default_data.update(address_update_data)
+        self.edit_address_page.enter_data_on_edit(default_data)
 
     def prepare_address_properties(self):
         # address_data = {}

@@ -63,8 +63,8 @@ class SearchTable(BaseComponent):
         address_rows = self.driver.find_element_by_xpath(ELEMENTMAP['row']).text
         for i in range(len(address_rows)):
             address_data = {
-                'name': TextElement(self.driver, ('xpath', (ELEMENTMAP['name']).format(row_number=i))[i]).get_text(),
-                'address': TextElement(self.driver, ('xpath', (ELEMENTMAP['address']).format(row_number=i))[i]).get_text(),
+                'name': TextElement(self.driver, ('xpath', (ELEMENTMAP['name']).format(row_number=i))).get_text(),
+                'address': TextElement(self.driver, ('xpath', (ELEMENTMAP['address']).format(row_number=i))).get_text(),
                 'all_email': TextElement(self.driver, ('xpath', (ELEMENTMAP['all_email']).format(row_number=i))).get_text(),
                 'all_phones': TextElement(self.driver, ('xpath', (ELEMENTMAP['all_phones']).format(row_number=i))).get_text()
             }

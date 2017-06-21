@@ -1,5 +1,6 @@
 """Edit AddressBook page object."""
 from Lib.pages.base_auth_page import BaseAuthPage
+from Lib.page_components import EditAddressBookForm
 
 class EditAddressBookPage(BaseAuthPage):
     """Edit AddressBook page.
@@ -8,6 +9,10 @@ class EditAddressBookPage(BaseAuthPage):
     """
     def __init__(self, driver):
         BaseAuthPage.__init__(self, driver)
+        self.edit_address_component = EditAddressBookForm(self.driver)
 
-    # def edit_an_address(self):
+    def enter_data_on_edit(self, default_data):
+        """Edit an address."""
+        self.edit_address_component.enter_data_on_edit(default_data)
+        self.edit_address_component.click_update_address_action()
 
