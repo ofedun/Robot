@@ -11,8 +11,12 @@ class EditAddressBookPage(BaseAuthPage):
         BaseAuthPage.__init__(self, driver)
         self.edit_address_component = EditAddressBookForm(self.driver)
 
-    def enter_data_on_edit(self, default_data):
+    def enter_data_on_edit(self, address_data):
         """Edit an address."""
-        self.edit_address_component.enter_data_on_edit(default_data)
+        self.edit_address_component.enter_data_on_edit(address_data)
         self.edit_address_component.click_update_address_action()
+
+    def get_address_details(self):
+        """Get address details on Edit page."""
+        return self.edit_address_component.get_address_details()
 

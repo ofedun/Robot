@@ -28,4 +28,4 @@ class InputField(BaseElement):
             (str): A field value.
         """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
-        return element
+        return element.text

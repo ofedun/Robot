@@ -5,6 +5,8 @@ from Lib.pages import BaseAuthPage
 from Lib.pages import EditAddressBookPage
 from Lib.steps_implementation.Browser import Browser
 
+my_suffix = 'Blah_Blah'# generate dynamically
+
 
 class AddAddressSteps(object):
 
@@ -27,23 +29,36 @@ class AddAddressSteps(object):
     def search_an_address(self, value):
         self.home_page.search_an_address(value)
         actual_results = self.home_page.get_search_results()
-        # for item in actual_results:
-        #     assert item in actual_results[item]
-        for k, v in actual_results:
-            assert value in actual_results[v]
 
-    def open_edit_address_page(self, address_name):
+        address_list = []
+        for item in actual_results:
+            actual_adddress = item['address']
+            address_list.append(actual_adddress)
+        assert value in address_list
+
+    def open_edit_address_page_with_address_name(self, address_name):
+        # address_name = address_name + my_suffix
         self.home_page.open_edit_address(address_name)
 
     def i_edit_an_address_with_the_details(self):
+        address_data = self.prepare_address_properties()
         address_update_data = {
             'First name': 'Robot',
             'Last name': 'Test1',
             'Address': 'New York'
         }
-        default_data = self.prepare_address_properties()
-        default_data.update(address_update_data)
-        self.edit_address_page.enter_data_on_edit(default_data)
+        address_data.update(address_update_data)
+        self.edit_address_page.enter_data_on_edit(address_data)
+
+    def the_address_should_be_updated_with_appropriate_details(self):
+        actual_address_details = self.edit_address_page.get_address_details()
+        expected_address_data = {
+            'First name': 'First nameRobot',
+            'Last name': 'LastTest1',
+            'Address': 'AddressNew York'
+        }
+        # for actual_value, expected_value
+        assert expected_address_data == actual_address_details
 
     def prepare_address_properties(self):
         # address_data = {}

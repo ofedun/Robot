@@ -24,12 +24,9 @@ Add new AddressBook
 *** Test Cases ***
 Edit AddressBook
     [Tags]    wip
-    Open browser to Login page    ${URL}  ${BROWSER}
-    Attempt to login with valid credentials
+    I add new address
     I edit an address
-#    I edit an address     First name      Last name            Address
-#    [Arguments]           Updated Name    Updated Last Name    Updated address
-#    The address should be edited
+    The address should be edited
 
 
 *** Keywords ***
@@ -41,11 +38,13 @@ The address should be created
     Search an address    Address
 
 I edit an address
-    Open Edit address page    Address7
-#    I edit an address with the details    Updated Name    Last name   Address
+    Open Edit address page with address name    Address
+    I edit an address with the details
 #    [Arguments]    ${First name}    ${Last name}    ${Address}
 #    | First name   | Last name         | Address         |
 #    | Updated Name | Updated Last Name | Updated address |
 
-#The address should be edited
-#    The address should be edited with appropriate details
+The address should be edited
+    Search an address    AddressNew York
+    Open Edit address page with address name    AddressNew York
+    The address should be updated with appropriate details
