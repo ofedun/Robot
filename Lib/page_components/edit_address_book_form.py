@@ -1,5 +1,6 @@
 """Component for Edit Addressbook form."""
-
+from Lib.elements import TextArea
+from Lib.elements import TextElement
 from Lib.page_components import BaseComponent
 from Lib.elements import InputField
 from Lib.elements import Button
@@ -26,7 +27,7 @@ class EditAddressBookForm(BaseComponent):
         self.first_name = InputField(self.driver, ELEMENTMAP['first_name'])
         self.middle_name = InputField(self.driver, ELEMENTMAP['middle_name'])
         self.last_name = InputField(self.driver, ELEMENTMAP['last_name'])
-        self.address = InputField(self.driver, ELEMENTMAP['address'])
+        self.address = TextArea(self.driver, ELEMENTMAP['address'])
         self.company = InputField(self.driver, ELEMENTMAP['company'])
         self.email = InputField(self.driver, ELEMENTMAP['email'])
         self.mobile = InputField(self.driver, ELEMENTMAP['mobile'])
@@ -52,14 +53,15 @@ class EditAddressBookForm(BaseComponent):
         """
         # address_list = []
         address_dict = {
-            'first_name': self.first_name.get_value(),
-            'middle_name': self.middle_name.get_value(),
-            'last_name': self.last_name.get_value(),
-            'address': self.address.get_value(),
-            'company': self.company.get_value(),
-            'email': self.email.get_value(),
-            'mobile': self.mobile.get_value()
+            'First name': self.first_name.get_value(),
+            'Middle name': self.middle_name.get_value(),
+            'Last name': self.last_name.get_value(),
+            'Address': self.address.get_value(),
+            'Company': self.company.get_value(),
+            'Email': self.email.get_value(),
+            'Mobile': self.mobile.get_value()
         }
         # for field_name, field_value in address_dict:
         #     address_list.append(field_value)
         return address_dict
+    # get_value for input field

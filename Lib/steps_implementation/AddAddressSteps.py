@@ -4,6 +4,7 @@ from Lib.pages import HomePage
 from Lib.pages import BaseAuthPage
 from Lib.pages import EditAddressBookPage
 from Lib.steps_implementation.Browser import Browser
+import random
 
 my_suffix = 'Blah_Blah'# generate dynamically
 
@@ -57,8 +58,10 @@ class AddAddressSteps(object):
             'Last name': 'LastTest1',
             'Address': 'AddressNew York'
         }
-        # for actual_value, expected_value
-        assert expected_address_data == actual_address_details
+        for key, value in expected_address_data.iteritems():
+            print('key:'+key)
+            print('Value:'+value)
+            assert value == actual_address_details[key]
 
     def prepare_address_properties(self):
         # address_data = {}

@@ -30,3 +30,16 @@ class LoginSteps(object):
     def is_logged_in_on_main_page(self, expected):
         actual_user = self.home_page.get_current_username(expected)
         assert actual_user == expected
+
+    def get_suffix(self, value):
+        """Generate the random string.
+
+        Args:
+            value(str): value to add suffix to.
+
+        Returns:
+            str: a string of randomly generated suffix.
+        """
+        return {
+            value: '{value}-{suffix}'
+        }

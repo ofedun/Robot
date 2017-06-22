@@ -1,8 +1,8 @@
-"""Class for handling input field elements."""
+"""Class for handling Text area elements."""
 from base_element import BaseElement
 
 
-class InputField(BaseElement):
+class TextArea(BaseElement):
     def __init__(self, driver, element_tuple, timeout=10):
         self.driver = driver
         self.locator_type = element_tuple[0]
@@ -28,4 +28,4 @@ class InputField(BaseElement):
             (str): A field value.
         """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
-        return element.get_attribute('value')
+        return element.text
