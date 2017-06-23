@@ -1,8 +1,11 @@
 """Steps for Login functionality."""
+import string
+
 from Lib.pages import LoginPage
 from Lib.pages import HomePage
 from Lib.pages import BasePage
 from Lib.steps_implementation.Browser import Browser
+import random
 
 
 class LoginSteps(object):
@@ -19,6 +22,7 @@ class LoginSteps(object):
         self.login_page.visit(url, browser)
 
     def enter_username(self, username):
+        username = self.get_suffix(username)
         self.login_page.enter_username(username)
 
     def enter_password(self, password):
@@ -31,8 +35,19 @@ class LoginSteps(object):
         actual_user = self.home_page.get_current_username(expected)
         assert actual_user == expected
 
+    def get_random_string(self, lenght=5):
+        """Generate random alphabetical string.
+
+        Args:
+            lenght: how long random string should be.
+
+        Returns:
+            string: a randomly generated string.
+        """
+        return ''.join(random.sample(string.lowercase, lenght))
+
     def get_suffix(self, value):
-        """Generate the random string.
+        """Generate the suffix.
 
         Args:
             value(str): value to add suffix to.
@@ -41,5 +56,6 @@ class LoginSteps(object):
             str: a string of randomly generated suffix.
         """
         return {
-            value: '{value}-{suffix}'.format(self, value)
+            value: '{value}-{suffix}'.format(value=value,
+                                             suffix=self.get_random_string)
         }
