@@ -5,4 +5,3 @@ class BaseComponent(object):
 
     Provides functionality for page components.
     """
-

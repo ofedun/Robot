@@ -6,7 +6,7 @@ from Lib.pages import EditAddressBookPage
 from Lib.steps_implementation.Browser import Browser
 import random
 
-my_suffix = 'Blah_Blah'# generate dynamically
+# my_suffix = 'Blah_Blah'# generate dynamically
 
 
 class AddAddressSteps(object):

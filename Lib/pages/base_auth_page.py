@@ -32,6 +32,4 @@ class BaseAuthPage(BasePage):
         """
         self.navigation_menu.click_menu_item(item_name)
 
-    # def select_navigation(self):
-    #
     # def log_out(self):

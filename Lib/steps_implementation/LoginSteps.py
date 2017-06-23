@@ -41,5 +41,5 @@ class LoginSteps(object):
             str: a string of randomly generated suffix.
         """
         return {
-            value: '{value}-{suffix}'
+            value: '{value}-{suffix}'.format(self, value)
         }

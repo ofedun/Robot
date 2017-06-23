@@ -32,7 +32,3 @@ Attempt to login with valid credentials
 
 I am logged in on main page
     Is logged in on main page    ${username}
-
-#Attempt to login with valid credentials
-#    [Arguments]    ${username}    ${password}
-#    Attempt to login with credentials    ${username}    ${password}

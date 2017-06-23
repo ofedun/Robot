@@ -1,13 +1,14 @@
 """Component for Edit Addressbook form."""
 from Lib.elements import TextArea
-from Lib.elements import TextElement
 from Lib.page_components import BaseComponent
 from Lib.elements import InputField
 from Lib.elements import Button
 
 
 ELEMENTMAP = {
-    'edit_address_button': '//table[@id="maintable"]//tr[@name="entry"]/td[contains(., "{address_name}")]/following-sibling::td/a/img[@title="Edit"]',
+    'edit_address_button':
+        '//table[@id="maintable"]//tr[@name="entry"]/td[contains(., "{address_name}")]'
+        '/following-sibling::td/a/img[@title="Edit"]',
     'update_button': ('xpath', '//input[@value="Update"]'),
     'first_name': ('xpath', '//input[@name="firstname"]'),
     'middle_name': ('xpath', '//input[@name="middlename"]'),
@@ -51,7 +52,6 @@ class EditAddressBookForm(BaseComponent):
         Returns:
             address_dict(dict): an address details.
         """
-        # address_list = []
         address_dict = {
             'First name': self.first_name.get_value(),
             'Middle name': self.middle_name.get_value(),
@@ -61,7 +61,4 @@ class EditAddressBookForm(BaseComponent):
             'Email': self.email.get_value(),
             'Mobile': self.mobile.get_value()
         }
-        # for field_name, field_value in address_dict:
-        #     address_list.append(field_value)
         return address_dict
-    # get_value for input field
