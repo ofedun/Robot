@@ -22,7 +22,7 @@ class LoginSteps(object):
         self.login_page.visit(url, browser)
 
     def enter_username(self, username):
-        username = self.get_suffix(username)
+        # username = self.get_suffix(username)
         self.login_page.enter_username(username)
 
     def enter_password(self, password):
