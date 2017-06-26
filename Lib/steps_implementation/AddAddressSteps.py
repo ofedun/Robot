@@ -63,6 +63,13 @@ class AddAddressSteps(object):
             print('Value:'+value)
             assert value == actual_address_details[key]
 
+    def delete_an_address(self, address_name):
+        self.home_page.delete_an_address(address_name)
+
+    def address_should_be_deleted(self, address_name):
+        actual_results = self.home_page.get_search_results()
+        assert address_name not in actual_results
+
     def prepare_address_properties(self):
         # address_data = {}
         default_data = {

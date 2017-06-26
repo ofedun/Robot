@@ -1,7 +1,7 @@
 """logic code for Search object."""
 
 from Lib.page_components import BaseComponent
-from Lib.elements import InputField, TextElement
+from Lib.elements import InputField, TextElement, CheckboxElement
 
 DEFAULT_CONTAINER = '//table[@id="maintable"]'
 ATTRIBUTE = 'test'
@@ -14,7 +14,8 @@ ELEMENTMAP = {
     'name': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[3]',
     'address': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[4]',
     'all_email': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[5]',
-    'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]'
+    'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]',
+    'select_address': '//table[@id="maintable"]//tr[@name="entry"]/td[contains(., {address_name})]sibling::td/input[@type="checkbox"]'
 
 }
 
@@ -31,6 +32,13 @@ class SearchTable(BaseComponent):
     def search_for_items(self, value):
         """Perform a search action with specified value."""
         self.search_field.set_value(value)
+
+    def select_the_address(self, address_name):
+        """Select an address action."""
+        select_address_action = CheckboxElement(
+            self.driver, ('xpath', ELEMENTMAP['select_address'].format(address_name=address_name)))
+        select_address_action.click()
+        # select_address_action.driver.check()
 
     def get_search_results(self):
         """Get search results.

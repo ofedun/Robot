@@ -27,3 +27,8 @@ class HomePage(BaseAuthPage):
     def open_edit_address(self, address_name):
         """Open Edit address page."""
         self.edit_address_form.open_edit_address(address_name)
+
+    def delete_an_address(self, address_name):
+        """Delete an address."""
+        self.search_table.select_the_address(address_name)
+        self.search_table.delete_address_action()

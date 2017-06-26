@@ -20,13 +20,20 @@ Add new AddressBook
     Attempt to login with valid credentials
     I add new address
     The address should be created
-
+#
 *** Test Cases ***
 Edit AddressBook
     [Tags]    wip
     I add new address
     I edit an address
     The address should be edited
+
+*** Test Cases ***
+Delete AddressBook
+    [Tags]    wip
+    I add new address
+    I delete an address
+    The address should be deleted
 
 
 *** Keywords ***
@@ -48,3 +55,10 @@ The address should be edited
     Search an address    AddressNew York
     Open Edit address page with address name    AddressNew York
     The address should be updated with appropriate details
+
+I delete an address
+    Delete an address    Middle name Last First name
+
+The address should be deleted
+    Search an address    Middle name Last First name
+    Address should be deleted    Middle name Last First name
