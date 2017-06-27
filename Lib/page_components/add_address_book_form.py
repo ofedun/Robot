@@ -14,10 +14,7 @@ ELEMENTMAP = {
     'email': ('xpath', '//input[@name="email"]'),
     'mobile': ('xpath', '//input[@name="mobile"]'),
     'enter_button': ('xpath', '//input[@value="Enter"][2]')
-
 }
-
-# driver = 'blahhh'
 
 
 class AddAddressBookForm(BaseComponent):
@@ -53,5 +50,3 @@ class AddAddressBookForm(BaseComponent):
 
     def click_add_address_action(self):
         self.enter_button.click()
-        # print(driver)
-        # print(self.driver)

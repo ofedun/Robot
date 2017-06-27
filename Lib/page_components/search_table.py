@@ -15,7 +15,6 @@ ELEMENTMAP = {
     'address': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[4]',
     'all_email': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[5]',
     'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]'
-
 }
 
 
@@ -42,10 +41,18 @@ class SearchTable(BaseComponent):
         address_rows = self.driver.find_elements_by_xpath(ELEMENTMAP['row'])
         for i in range(len(address_rows)):
             address_data = {
-                'name': TextElement(self.driver, ('xpath', (ELEMENTMAP['name']).format(row_number=i+1))).get_text(),
-                'address': TextElement(self.driver, ('xpath', (ELEMENTMAP['address']).format(row_number=i+1))).get_text(),
-                'all_email': TextElement(self.driver, ('xpath', (ELEMENTMAP['all_email']).format(row_number=i+1))).get_text(),
-                'all_phones': TextElement(self.driver, ('xpath', (ELEMENTMAP['all_phones']).format(row_number=i+1))).get_text()
+                'name': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['name']).format(
+                        row_number=i+1))).get_text(),
+                'address': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['address']).format(
+                        row_number=i+1))).get_text(),
+                'all_email': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['all_email']).format(
+                        row_number=i+1))).get_text(),
+                'all_phones': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['all_phones']).format(
+                        row_number=i+1))).get_text()
             }
             search_results.append(address_data)
         return search_results
