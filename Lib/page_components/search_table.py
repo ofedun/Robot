@@ -1,7 +1,7 @@
 """logic code for Search object."""
 
 from Lib.page_components import BaseComponent
-from Lib.elements import InputField, TextElement, CheckboxElement
+from Lib.elements import Button, InputField, TextElement, CheckboxElement
 
 DEFAULT_CONTAINER = '//table[@id="maintable"]'
 ATTRIBUTE = 'test'
@@ -15,7 +15,10 @@ ELEMENTMAP = {
     'address': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[4]',
     'all_email': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[5]',
     'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]',
-    'select_address': '//table[@id="maintable"]//tr[@name="entry"]/td[contains(., {address_name})]sibling::td/input[@type="checkbox"]'
+    'select_address':
+        '//table[@id="maintable"]//tr[@name="entry"]/'
+        'td[contains(., {address_name})]/parent::*/td/input[@type="checkbox"]',
+    'delete_button': '//input[@value="Delete"]'
 
 }
 
@@ -38,7 +41,29 @@ class SearchTable(BaseComponent):
         select_address_action = CheckboxElement(
             self.driver, ('xpath', ELEMENTMAP['select_address'].format(address_name=address_name)))
         select_address_action.click()
-        # select_address_action.driver.check()
+
+    def delete_address_action(self):
+        """Click delete address."""
+        delete_button = Button(self.driver, ('xpath', ELEMENTMAP['delete_button']))
+        delete_button.click()
+        self.handle_alert_popup_on_delete()
+
+    def handle_alert_popup_on_delete(self):
+        alertObj = self.driver.switch_to.alert
+        alertObj.accept()
+        # main_window_handle = None
+        # # while not main_window_handle:
+        # #     main_window_handle = driver.current_window_handle
+        # self.driver.find_element_by_xpath(u'//a[text()="OK"]').click()
+        # alert__on_delete_window_handle = None
+        # while not signin_window_handle:
+        #     for handle in self.driver.window_handles:
+        #         if handle != main_window_handle:
+        #             signin_window_handle = handle
+        #             break
+        # self.driver.switch_to.window(alert__on_delete_window_handle).alert().accept()
+        # self.driver.find_element_by_xpath(u'//input[@text="OK"]').click()
+        # driver.switch_to.window(main_window_handle)
 
     def get_search_results(self):
         """Get search results.
@@ -50,10 +75,18 @@ class SearchTable(BaseComponent):
         address_rows = self.driver.find_elements_by_xpath(ELEMENTMAP['row'])
         for i in range(len(address_rows)):
             address_data = {
-                'name': TextElement(self.driver, ('xpath', (ELEMENTMAP['name']).format(row_number=i+1))).get_text(),
-                'address': TextElement(self.driver, ('xpath', (ELEMENTMAP['address']).format(row_number=i+1))).get_text(),
-                'all_email': TextElement(self.driver, ('xpath', (ELEMENTMAP['all_email']).format(row_number=i+1))).get_text(),
-                'all_phones': TextElement(self.driver, ('xpath', (ELEMENTMAP['all_phones']).format(row_number=i+1))).get_text()
+                'name': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['name']).format(
+                        row_number=i+1))).get_text(),
+                'address': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['address']).format(
+                        row_number=i+1))).get_text(),
+                'all_email': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['all_email']).format(
+                        row_number=i+1))).get_text(),
+                'all_phones': TextElement(
+                    self.driver, ('xpath', (ELEMENTMAP['all_phones']).format(
+                        row_number=i+1))).get_text()
             }
             search_results.append(address_data)
         return search_results

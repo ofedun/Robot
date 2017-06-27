@@ -19,6 +19,7 @@ class InputField(BaseElement):
         """
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
         if element.is_displayed():
+            element.clear()
             element.send_keys(value)
 
     def get_value(self):

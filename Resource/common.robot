@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation    Suite description
 #Suite Teardown    Close All Browsers
-#Library    Selenium2Library
 Library    Lib/steps_implementation/LoginSteps.py
 Library    Lib/steps_implementation/Browser.py
 Resource    Resource/common.robot

@@ -31,14 +31,6 @@ class LoginForm(BaseComponent):
         self.password.set_value(password)
         self.login_button.click()
 
-        # self.driver.find_element_by_name(
-        #     ELEMENTMAP['username']).first.fill(username)
-        # self.driver.find_element_by_name(
-        #     ELEMENTMAP['password']).first.fill(password)
-        # login_button = self.driver.find_by_text(
-        #     ELEMENTMAP['login_button'])
-        # login_button.click()
-
     def enter_username(self, username):
         self.username.set_value(username)
 

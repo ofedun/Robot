@@ -24,11 +24,6 @@ class BaseElement(object):
         element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
         return element.text
 
-    def get_element_with_retry(self):
-        """Get element(s)."""
-        element = self.find_visible_element(self.locator_type, self.locator, self.timeout)
-        return getattr(self.driver, element)
-
     def find_visible_element(self, locator_type, locator, timeout=None):
         wait = WebDriverWait(self.driver, 10)
         # elements = wait.until(EC.presence_of_element_located((By.XPATH, locator)))

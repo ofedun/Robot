@@ -21,4 +21,5 @@ class NavigationElement(BaseComponent):
         Args:
             item_name(str): Item name to be clicked.
         """
-        Link(self.driver, ('xpath', ELEMENTMAP['menu_item'].format(item_name=item_name))).click()
+        Link(self.driver, ('xpath', ELEMENTMAP['menu_item'].format(
+            item_name=item_name))).click()

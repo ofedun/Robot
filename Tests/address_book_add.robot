@@ -5,8 +5,6 @@ Test Setup    Open browser to Login page    ${URL}  ${BROWSER}
 Library    Lib/steps_implementation/AddAddressSteps.py
 Library    Lib/steps_implementation/LoginSteps.py
 Resource   Resource/common.robot
-#Variables    Variables  /variable.robot
-#Test Template    I edit an address
 
 
 *** Variables ***
@@ -20,7 +18,7 @@ Add new AddressBook
     Attempt to login with valid credentials
     I add new address
     The address should be created
-#
+
 *** Test Cases ***
 Edit AddressBook
     [Tags]    wip
@@ -42,23 +40,20 @@ I add new address
     Enter valid data
 
 The address should be created
-    Search an address    Address
+    Search an address    London
 
 I edit an address
-    Open Edit address page with address name    Address
+    Open Edit address page with address name    London
     I edit an address with the details
-#    [Arguments]    ${First name}    ${Last name}    ${Address}
-#    | First name   | Last name         | Address         |
-#    | Updated Name | Updated Last Name | Updated address |
 
 The address should be edited
-    Search an address    AddressNew York
-    Open Edit address page with address name    AddressNew York
+    Search an address    New York
+    Open Edit address page with address name    New York
     The address should be updated with appropriate details
 
 I delete an address
-    Delete an address    Middle name Last First name
+    Delete an address    London
 
 The address should be deleted
-    Search an address    Middle name Last First name
-    Address should be deleted    Middle name Last First name
+    Search an address    London
+    Address should be deleted    London
