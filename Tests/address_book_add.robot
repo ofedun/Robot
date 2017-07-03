@@ -55,5 +55,4 @@ I delete an address
     Delete an address    London
 
 The address should be deleted
-    Search an address    London
     Address should be deleted    London

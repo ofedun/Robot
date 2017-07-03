@@ -17,7 +17,7 @@ ELEMENTMAP = {
     'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]',
     'select_address':
         '//table[@id="maintable"]//tr[@name="entry"]/'
-        'td[contains(., {address_name})]/parent::*/td/input[@type="checkbox"]',
+        'td[contains(., "{address_name}")]/parent::*/td/input[@type="checkbox"]',
     'delete_button': '//input[@value="Delete"]'
 
 }
@@ -49,21 +49,9 @@ class SearchTable(BaseComponent):
         self.handle_alert_popup_on_delete()
 
     def handle_alert_popup_on_delete(self):
+        """Confirm delete action on alert pop-up."""
         alertObj = self.driver.switch_to.alert
         alertObj.accept()
-        # main_window_handle = None
-        # # while not main_window_handle:
-        # #     main_window_handle = driver.current_window_handle
-        # self.driver.find_element_by_xpath(u'//a[text()="OK"]').click()
-        # alert__on_delete_window_handle = None
-        # while not signin_window_handle:
-        #     for handle in self.driver.window_handles:
-        #         if handle != main_window_handle:
-        #             signin_window_handle = handle
-        #             break
-        # self.driver.switch_to.window(alert__on_delete_window_handle).alert().accept()
-        # self.driver.find_element_by_xpath(u'//input[@text="OK"]').click()
-        # driver.switch_to.window(main_window_handle)
 
     def get_search_results(self):
         """Get search results.

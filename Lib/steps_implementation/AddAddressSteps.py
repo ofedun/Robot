@@ -71,6 +71,8 @@ class AddAddressSteps(object):
         self.home_page.delete_an_address(address_name)
 
     def address_should_be_deleted(self, address_name):
+        address_name = self.append_suffix(address_name)
+        self.home_page.search_an_address(address_name)
         actual_results = self.home_page.get_search_results()
         assert address_name not in actual_results
 
