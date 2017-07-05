@@ -1,4 +1,5 @@
 """logic code for Search object."""
+from time import sleep
 
 from Lib.page_components import BaseComponent
 from Lib.elements import Button, InputField, TextElement, CheckboxElement
@@ -46,12 +47,19 @@ class SearchTable(BaseComponent):
         """Click delete address."""
         delete_button = Button(self.driver, ('xpath', ELEMENTMAP['delete_button']))
         delete_button.click()
+        sleep(10)
         self.handle_alert_popup_on_delete()
 
     def handle_alert_popup_on_delete(self):
         """Confirm delete action on alert pop-up."""
-        alertObj = self.driver.switch_to.alert
-        alertObj.accept()
+        # self.driver.switch_to.alert.accept()
+        # self.driver.switch_to.alert.dismiss()
+
+        try:
+            alert = self.driver.switch_to_alert()
+            alert.accept()
+        except:
+            print("no alert to accept")
 
     def get_search_results(self):
         """Get search results.

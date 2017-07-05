@@ -18,4 +18,5 @@ class Browser(object):
 
     def close_browser(self):
         """Quit browser."""
-        self.driver.close()
+        # self.driver.close()
+        self.driver.quit()
