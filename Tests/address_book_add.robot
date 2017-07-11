@@ -19,13 +19,13 @@ Add new AddressBook
     I add new address
     The address should be created
 
-*** Test Cases ***
-Edit AddressBook
-    [Tags]    wip
-    I add new address
-    I edit an address
-    The address should be edited
-
+#*** Test Cases ***
+#Edit AddressBook
+#    [Tags]    wip
+#    I add new address
+#    I edit an address
+#    The address should be edited
+#
 *** Test Cases ***
 Delete AddressBook
     [Tags]    wip

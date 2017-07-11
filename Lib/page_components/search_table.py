@@ -28,7 +28,7 @@ ELEMENTMAP = {
 
 class SearchTable(BaseComponent):
     """Functionality for Search table."""
-    def __init__(self, driver, container=DEFAULT_CONTAINER):
+    def __init__(self, driver):
         super(BaseComponent, self).__init__()
         self.driver = driver
 
@@ -56,6 +56,7 @@ class SearchTable(BaseComponent):
             WebDriverWait(self.driver, TIMEOUT).until(EC.alert_is_present(),
                                             'Timed out waiting for PA creation ' +
                                             'confirmation popup to appear.')
+            # self.driver.execute_script('window.confirm = function () { return true }')
             alert = self.driver.switch_to.alert
             alert.accept()
         except TimeoutException:
