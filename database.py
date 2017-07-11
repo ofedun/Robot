@@ -9,7 +9,7 @@ class Database():
     def __init__(self):
         self.root = 'admin'
         self.host = 'http://localhost/addressbook/'
-        self.rootpw = 'secret'
+        self.rootpw = 'password'
 
         # Open database connection
         db = MySQLdb.connect(self.host, self.root, self.rootpw)

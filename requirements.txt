@@ -1,0 +1,6 @@
+robot==3.0.2
+selenium==3.3.3
+python==2.7
+mysql==5.5.54
+MySQLdb==
+apache2==
