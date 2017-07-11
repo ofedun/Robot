@@ -3,8 +3,6 @@
 from Lib.page_components import BaseComponent
 from Lib.elements import InputField, TextElement
 
-DEFAULT_CONTAINER = '//table[@id="maintable"]'
-ATTRIBUTE = 'test'
 
 ELEMENTMAP = {
     'search_box': ('xpath', '//input[@name="searchstring"]'),
@@ -20,7 +18,7 @@ ELEMENTMAP = {
 
 class SearchTable(BaseComponent):
     """Functionality for Search table."""
-    def __init__(self, driver, container=DEFAULT_CONTAINER):
+    def __init__(self, driver):
         super(BaseComponent, self).__init__()
         self.driver = driver
 

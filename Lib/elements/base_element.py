@@ -3,6 +3,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
+TIMEOUT = 10
+
 class BaseElement(object):
     def __init__(self, driver, element_tuple, timeout=10):
         self.driver = driver
@@ -25,9 +27,14 @@ class BaseElement(object):
         return element.text
 
     def find_visible_element(self, locator_type, locator, timeout=None):
-        wait = WebDriverWait(self.driver, 10)
+        """Find visible element.
+
+        Returns:
+            element : the WebElement once it is located.
+        """
+        wait = WebDriverWait(self.driver, TIMEOUT)
         # elements = wait.until(EC.presence_of_element_located((By.XPATH, locator)))
         # my_by_xpath = By.XPATH
-        my_by_xpath = getattr(By, locator_type.upper())
-        elements = wait.until(EC.presence_of_element_located((my_by_xpath, locator)))
-        return elements
+        find_by_locator = getattr(By, locator_type.upper())
+        element = wait.until(EC.presence_of_element_located((find_by_locator, locator)))
+        return element
