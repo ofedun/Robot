@@ -1,11 +1,13 @@
 """logic code for Search object."""
-from time import sleep
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 from Lib.page_components import BaseComponent
 from Lib.elements import Button, InputField, TextElement, CheckboxElement
 
-DEFAULT_CONTAINER = '//table[@id="maintable"]'
-ATTRIBUTE = 'test'
+TIMEOUT = 10
 
 ELEMENTMAP = {
     'search_box': ('xpath', '//input[@name="searchstring"]'),
@@ -47,18 +49,16 @@ class SearchTable(BaseComponent):
         """Click delete address."""
         delete_button = Button(self.driver, ('xpath', ELEMENTMAP['delete_button']))
         delete_button.click()
-        sleep(10)
-        self.handle_alert_popup_on_delete()
+        self.wait_and_confirm_popup()
 
-    def handle_alert_popup_on_delete(self):
-        """Confirm delete action on alert pop-up."""
-        # self.driver.switch_to.alert.accept()
-        # self.driver.switch_to.alert.dismiss()
-
+    def wait_and_confirm_popup(self):
         try:
-            alert = self.driver.switch_to_alert()
+            WebDriverWait(self.driver, TIMEOUT).until(EC.alert_is_present(),
+                                            'Timed out waiting for PA creation ' +
+                                            'confirmation popup to appear.')
+            alert = self.driver.switch_to.alert
             alert.accept()
-        except:
+        except TimeoutException:
             print("no alert to accept")
 
     def get_search_results(self):

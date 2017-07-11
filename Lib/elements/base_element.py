@@ -29,5 +29,5 @@ class BaseElement(object):
         # elements = wait.until(EC.presence_of_element_located((By.XPATH, locator)))
         # my_by_xpath = By.XPATH
         my_by_xpath = getattr(By, locator_type.upper())
-        elements = wait.until(EC.presence_of_element_located((my_by_xpath, locator)))
-        return elements
+        element = wait.until(EC.presence_of_element_located((my_by_xpath, locator)))
+        return element
