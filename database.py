@@ -3,20 +3,24 @@
 
 import MySQLdb
 
+CONNECTION_TIMEOUT = 100
+
 
 class Database(object):
-    def __init__(self, hostname, username, password):
+    def __init__(self, hostname, username, password, db_name):
         self.hostname = hostname
         self.username = username
         self.password = password
-
-        # self.root = 'admin'
-        # self.host = 'http://localhost/addressbook/'
-        # self.rootpw = 'password'
+        self.db_name = db_name
 
     def open_connection(self):
         """Open database connection."""
-        self.db_connection = MySQLdb.connect(self.hostname, self.username, self.password)
+        self.db_connection = MySQLdb.connect(
+            self.hostname,
+            self.username,
+            self.password,
+            self.db_name,
+            connect_timeout=CONNECTION_TIMEOUT)
 
     def load_dump(self, file_path):
         """Load dump file into database."""
@@ -26,8 +30,7 @@ class Database(object):
         cursor = self.db_connection.cursor()
 
         # Execute dump.sql file
-        # with self.connection as cursor:
-        cursor.execute(open(file_path, "r").read()).store_result()
+        cursor.execute(open(file_path, "r").read())
         self.close_connection()
 
     def close_connection(self):
