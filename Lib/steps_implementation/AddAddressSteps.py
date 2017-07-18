@@ -8,6 +8,8 @@ from Lib.pages import EditAddressBookPage
 from Lib.steps_implementation.Browser import Browser
 import random
 
+from database import Database
+
 
 class AddAddressSteps(object):
 
@@ -39,6 +41,10 @@ class AddAddressSteps(object):
             actual_adddress = item['address']
             address_list.append(actual_adddress)
         assert value in address_list
+
+    def load_dump_file(self):
+        self.database = Database('localhost', 'root', 'password')
+        self.database.load_dump('/home/olena/src/address-book/robot/dump.sql')
 
     def open_edit_address_page_with_address_name(self, address_name):
         address_name = self.append_suffix(address_name)
