@@ -31,7 +31,6 @@ class Database(object):
 
         # Execute dump.sql file
         cursor.execute(open(file_path, "r").read())
-        self.close_connection()
 
     def close_connection(self):
         """Disconnect from server."""

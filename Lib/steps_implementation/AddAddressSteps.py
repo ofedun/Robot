@@ -1,14 +1,13 @@
 """Steps for Add AddressBook functionality."""
+import random
 import string
 
+from Lib.database import Database
 from Lib.pages import AddAddressBookPage
-from Lib.pages import HomePage
 from Lib.pages import BaseAuthPage
 from Lib.pages import EditAddressBookPage
+from Lib.pages import HomePage
 from Lib.steps_implementation.Browser import Browser
-import random
-
-from database import Database
 
 
 class AddAddressSteps(object):
@@ -44,7 +43,7 @@ class AddAddressSteps(object):
 
     def load_dump_file(self):
         self.database = Database('localhost', 'root', 'password', 'address_book')
-        self.database.load_dump('/home/olena/src/address-book/robot/dump.sql')
+        self.database.load_dump('/home/olena/src/address-book/robot/Lib/dump.sql')
 
     def open_edit_address_page_with_address_name(self, address_name):
         address_name = self.append_suffix(address_name)
