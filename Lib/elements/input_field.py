@@ -1,14 +1,10 @@
 """Class for handling input field elements."""
-from base_element import BaseElement
+from base_element import BaseElement, TIMEOUT
 
 
 class InputField(BaseElement):
-    def __init__(self, driver, element_tuple, timeout=10):
-        self.driver = driver
-        self.locator_type = element_tuple[0]
-        self.locator = element_tuple[1]
-        self.timeout = timeout
-        super(BaseElement, self).__init__()
+    def __init__(self, driver, element_tuple, timeout=TIMEOUT):
+        BaseElement.__init__(self, driver, element_tuple, timeout=TIMEOUT)
 
 
     def set_value(self, value):
