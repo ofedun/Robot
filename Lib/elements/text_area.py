@@ -3,8 +3,6 @@ from base_element import BaseElement, TIMEOUT
 
 
 class TextArea(BaseElement):
-    def __init__(self, driver, element_tuple, timeout=TIMEOUT):
-        BaseElement.__init__(self, driver, element_tuple, timeout=TIMEOUT)
 
 
     def set_value(self, value):
