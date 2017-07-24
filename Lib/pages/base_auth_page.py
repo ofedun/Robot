@@ -31,5 +31,3 @@ class BaseAuthPage(BasePage):
             item_name(str): Item name to navigate.
         """
         self.navigation_menu.click_menu_item(item_name)
-
-    # def log_out(self):

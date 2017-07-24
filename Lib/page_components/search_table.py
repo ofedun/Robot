@@ -4,10 +4,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
+from Lib.elements.base_element import TIMEOUT
 from Lib.page_components import BaseComponent
-from Lib.elements import Button, InputField, TextElement, CheckboxElement
+from Lib.elements import Button, CheckboxElement, InputField, TextElement
 
-TIMEOUT = 10
 
 ELEMENTMAP = {
     'search_box': ('xpath', '//input[@name="searchstring"]'),
@@ -56,7 +56,6 @@ class SearchTable(BaseComponent):
             WebDriverWait(self.driver, TIMEOUT).until(EC.alert_is_present(),
                                             'Timed out waiting for PA creation ' +
                                             'confirmation popup to appear.')
-            # self.driver.execute_script('window.confirm = function () { return true }')
             alert = self.driver.switch_to.alert
             alert.accept()
         except TimeoutException:
