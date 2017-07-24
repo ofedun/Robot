@@ -1,7 +1,12 @@
 """logic code for Search object."""
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+
+from Lib.elements.base_element import TIMEOUT
 from Lib.page_components import BaseComponent
-from Lib.elements import InputField, TextElement
+from Lib.elements import Button, CheckboxElement, InputField, TextElement
 
 
 ELEMENTMAP = {
@@ -12,7 +17,12 @@ ELEMENTMAP = {
     'name': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[3]',
     'address': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[4]',
     'all_email': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[5]',
-    'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]'
+    'all_phones': '//table[@id="maintable"]//tr[@name="entry"][{row_number}]/td[6]',
+    'select_address':
+        '//table[@id="maintable"]//tr[@name="entry"]/'
+        'td[contains(., "{address_name}")]/parent::*/td/input[@type="checkbox"]',
+    'delete_button': '//input[@value="Delete"]'
+
 }
 
 
@@ -28,6 +38,28 @@ class SearchTable(BaseComponent):
     def search_for_items(self, value):
         """Perform a search action with specified value."""
         self.search_field.set_value(value)
+
+    def select_the_address(self, address_name):
+        """Select an address action."""
+        select_address_action = CheckboxElement(
+            self.driver, ('xpath', ELEMENTMAP['select_address'].format(address_name=address_name)))
+        select_address_action.click()
+
+    def delete_address_action(self):
+        """Click delete address."""
+        delete_button = Button(self.driver, ('xpath', ELEMENTMAP['delete_button']))
+        delete_button.click()
+        self.wait_and_confirm_popup()
+
+    def wait_and_confirm_popup(self):
+        try:
+            WebDriverWait(self.driver, TIMEOUT).until(EC.alert_is_present(),
+                                            'Timed out waiting for PA creation ' +
+                                            'confirmation popup to appear.')
+            alert = self.driver.switch_to.alert
+            alert.accept()
+        except TimeoutException:
+            print("no alert to accept")
 
     def get_search_results(self):
         """Get search results.

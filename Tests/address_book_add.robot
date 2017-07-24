@@ -14,6 +14,7 @@ ${item_name}
 *** Test Cases ***
 Add new AddressBook
     [Tags]    wip
+    Load dump file
     Open browser to Login page    ${URL}  ${BROWSER}
     Attempt to login with valid credentials
     I add new address
@@ -26,6 +27,13 @@ Edit AddressBook
     I edit an address
     The address should be edited
 
+*** Test Cases ***
+Delete AddressBook
+    [Tags]    wip
+    I add new address
+    I delete an address
+    The address should be deleted
+
 
 *** Keywords ***
 I add new address
@@ -33,13 +41,19 @@ I add new address
     Enter valid data
 
 The address should be created
-    Search an address    Address
+    Search an address    London
 
 I edit an address
-    Open Edit address page with address name    Address
+    Open Edit address page with address name    London
     I edit an address with the details
 
 The address should be edited
     Search an address    New York
     Open Edit address page with address name    New York
     The address should be updated with appropriate details
+
+I delete an address
+    Delete an address    London
+
+The address should be deleted
+    Address should be deleted    London

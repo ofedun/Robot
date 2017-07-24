@@ -1,12 +1,13 @@
 """Steps for Add AddressBook functionality."""
+import random
 import string
 
+from Lib.database import Database
 from Lib.pages import AddAddressBookPage
-from Lib.pages import HomePage
 from Lib.pages import BaseAuthPage
 from Lib.pages import EditAddressBookPage
+from Lib.pages import HomePage
 from Lib.steps_implementation.Browser import Browser
-import random
 
 
 class AddAddressSteps(object):
@@ -40,6 +41,10 @@ class AddAddressSteps(object):
             address_list.append(actual_adddress)
         assert value in address_list
 
+    def load_dump_file(self):
+        self.database = Database('localhost', 'root', 'password', 'address_book')
+        self.database.load_dump('/home/olena/src/address-book/robot/Lib/dump.sql')
+
     def open_edit_address_page_with_address_name(self, address_name):
         address_name = self.append_suffix(address_name)
         self.home_page.open_edit_address(address_name)
@@ -66,20 +71,29 @@ class AddAddressSteps(object):
             # print('Value:'+value)
             assert value == actual_address_details[key]
 
+    def delete_an_address(self, address_name):
+        address_name = self.append_suffix(address_name)
+        self.home_page.delete_an_address(address_name)
+
+    def address_should_be_deleted(self, address_name):
+        address_name = self.append_suffix(address_name)
+        self.home_page.search_an_address(address_name)
+        actual_results = self.home_page.get_search_results()
+        assert address_name not in actual_results
+
     def prepare_address_properties(self):
         # address_data = {}
         default_data = {
             'First name': 'First name',
             'Middle name': 'Middle name',
             'Last name': 'Last',
-            'Address': 'Address',
+            'Address': 'London',
             'Company': 'Company',
             'Mobile': 'Mobile',
             'Email': 'Email'
         }
         # default_data.update(address_data)
         return default_data
-
 
     def get_random_string(self, lenght=5):
         """Generate random alphabetical string.

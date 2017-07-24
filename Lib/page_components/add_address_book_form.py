@@ -23,8 +23,6 @@ class AddAddressBookForm(BaseComponent):
         super(BaseComponent, self).__init__()
         self.driver = driver
 
-        # for key, value in ELEMENTMAP.items():
-        #     setattr(self, key, InputField(self, value))
 
         self.first_name = InputField(self.driver, ELEMENTMAP['first_name'])
         self.middle_name = InputField(self.driver, ELEMENTMAP['middle_name'])

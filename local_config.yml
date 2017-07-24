@@ -1,0 +1,6 @@
+global_timeout: 10
+api_host_netloc: http://localhost/addressbook/
+home_host_netloc: http://localhost/addressbook/
+regular_username: admin
+regular_user_password: secret
+
